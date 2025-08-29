@@ -17,6 +17,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar as CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
+import ProjectSprintSelector from "./ProjectSprintSelector";
 
 interface ProjectFormProps {
   onSubmit: (data: any) => void;
@@ -30,6 +31,11 @@ const ProjectForm = ({ onSubmit, onCancel, initialData }: ProjectFormProps) => {
   const [color, setColor] = useState(initialData?.color || "blue");
   const [startDate, setStartDate] = useState<Date | undefined>(initialData?.startDate);
   const [dueDate, setDueDate] = useState<Date | undefined>(initialData?.dueDate);
+  const [sprintData, setSprintData] = useState({
+    numberOfSprints: 1,
+    sprintDuration: 1,
+    startDate: new Date()
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,8 +44,17 @@ const ProjectForm = ({ onSubmit, onCancel, initialData }: ProjectFormProps) => {
       description,
       color,
       startDate,
-      dueDate
+      dueDate,
+      sprintData
     });
+  };
+
+  const handleSprintChange = (data: { 
+    numberOfSprints: number; 
+    sprintDuration: number;
+    startDate: Date | undefined;
+  }) => {
+    setSprintData(data);
   };
 
   const colorOptions = [
@@ -146,6 +161,11 @@ const ProjectForm = ({ onSubmit, onCancel, initialData }: ProjectFormProps) => {
             </PopoverContent>
           </Popover>
         </div>
+      </div>
+      
+      <div className="border-t pt-4">
+        <h3 className="font-medium mb-3">Sprint Planning</h3>
+        <ProjectSprintSelector onSprintChange={handleSprintChange} />
       </div>
       
       <div className="flex justify-end gap-2">

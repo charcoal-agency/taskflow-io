@@ -17,6 +17,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar as CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
+import TaskSprintSelector from "./TaskSprintSelector";
 
 interface TaskFormProps {
   onSubmit: (data: any) => void;
@@ -30,6 +31,11 @@ const TaskForm = ({ onSubmit, onCancel, initialData }: TaskFormProps) => {
   const [project, setProject] = useState(initialData?.project || "");
   const [priority, setPriority] = useState(initialData?.priority || "Medium");
   const [dueDate, setDueDate] = useState<Date | undefined>(initialData?.dueDate);
+  const [sprintData, setSprintData] = useState({
+    duration: 1,
+    startDate: new Date(),
+    endDate: undefined as Date | undefined
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,8 +44,17 @@ const TaskForm = ({ onSubmit, onCancel, initialData }: TaskFormProps) => {
       description,
       project,
       priority,
-      dueDate
+      dueDate,
+      sprintData
     });
+  };
+
+  const handleSprintChange = (data: { 
+    duration: number; 
+    startDate: Date | undefined; 
+    endDate: Date | undefined 
+  }) => {
+    setSprintData(data);
   };
 
   return (
@@ -120,6 +135,11 @@ const TaskForm = ({ onSubmit, onCancel, initialData }: TaskFormProps) => {
             </PopoverContent>
           </Popover>
         </div>
+      </div>
+      
+      <div className="border-t pt-4">
+        <h3 className="font-medium mb-3">Sprint Planning</h3>
+        <TaskSprintSelector onSprintChange={handleSprintChange} />
       </div>
       
       <div className="flex justify-end gap-2">
