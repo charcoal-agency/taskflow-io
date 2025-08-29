@@ -3,7 +3,6 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
-  Calendar, 
   Clock, 
   Flag,
   CheckCircle,
@@ -31,7 +30,7 @@ const TaskAnalytics = () => {
     { title: "Total Tasks", value: "24", change: "+12%", icon: <CheckCircle className="h-4 w-4" /> },
     { title: "Completed", value: "18", change: "+8%", icon: <TrendingUp className="h-4 w-4" /> },
     { title: "Avg. Completion Time", value: "2.3 days", change: "-0.5 days", icon: <Clock className="h-4 w-4" /> },
-    { title: "Overdue", value: "2", change: "-1", icon: <Calendar className="h-4 w-4" /> },
+    { title: "Overdue", value: "2", change: "-1", icon: <Flag className="h-4 w-4" /> },
   ];
 
   return (
@@ -90,9 +89,9 @@ const TaskAnalytics = () => {
                     dataKey="value"
                     label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
                   >
-                    {priorityData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
-                    ))}
+                    <Cell key={`cell-0`} fill={priorityData[0].color} />
+                    <Cell key={`cell-1`} fill={priorityData[1].color} />
+                    <Cell key={`cell-2`} fill={priorityData[2].color} />
                   </Pie>
                   <Tooltip />
                 </PieChart>

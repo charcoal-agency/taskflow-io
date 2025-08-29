@@ -6,8 +6,7 @@ import {
   TrendingUp, 
   Clock, 
   Target, 
-  Award,
-  Calendar
+  Award
 } from "lucide-react";
 
 const ProductivityInsights = () => {
@@ -96,9 +95,9 @@ const ProductivityInsights = () => {
                     dataKey="value"
                     label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
                   >
-                    {projectData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
-                    ))}
+                    <Cell key={`cell-0`} fill={projectData[0].color} />
+                    <Cell key={`cell-1`} fill={projectData[1].color} />
+                    <Cell key={`cell-2`} fill={projectData[2].color} />
                   </Pie>
                   <Tooltip />
                 </PieChart>

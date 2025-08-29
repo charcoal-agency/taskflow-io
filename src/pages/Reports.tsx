@@ -15,7 +15,6 @@ import {
   Pie,
   Cell,
   Download,
-  Calendar,
   Filter
 } from "recharts";
 import { 
@@ -30,7 +29,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Calendar as CalendarComponent } from "@/components/ui/calendar";
+import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { 
   BarChart as BarChartIcon,
@@ -79,13 +78,12 @@ const Reports = () => {
           <Popover>
             <PopoverTrigger asChild>
               <Button variant="outline">
-                <Calendar className="h-4 w-4 mr-2" />
                 {dateRange.from ? format(dateRange.from, "MMM dd, yyyy") : "Start Date"} - 
                 {dateRange.to ? format(dateRange.to, "MMM dd, yyyy") : "End Date"}
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0">
-              <CalendarComponent
+              <Calendar
                 mode="range"
                 selected={dateRange}
                 onSelect={setDateRange}
@@ -219,9 +217,9 @@ const Reports = () => {
                     dataKey="value"
                     label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
                   >
-                    {projectData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
-                    ))}
+                    <Cell key={`cell-0`} fill={projectData[0].color} />
+                    <Cell key={`cell-1`} fill={projectData[1].color} />
+                    <Cell key={`cell-2`} fill={projectData[2].color} />
                   </Pie>
                   <Tooltip />
                 </PieChart>
