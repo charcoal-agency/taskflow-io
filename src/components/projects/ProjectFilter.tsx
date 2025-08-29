@@ -61,7 +61,9 @@ const ProjectFilter = () => {
   const members = [
     { value: "alex", label: "Alex Johnson" },
     { value: "sam", label: "Sam Smith" },
-    { value: "taylor", label: "Taylor Brown" }
+    { value: "taylor", label: "Taylor Brown" },
+    { value: "jordan", label: "Jordan Lee" },
+    { value: "casey", label: "Casey Davis" }
   ];
 
   return (

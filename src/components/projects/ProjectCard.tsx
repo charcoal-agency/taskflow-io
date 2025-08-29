@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Progress } from "@/components/ui/progress";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 
 interface ProjectCardProps {
   id: number;
@@ -23,6 +24,8 @@ interface ProjectCardProps {
   tasks: number;
   members: number;
   color: string;
+  status: string;
+  dueDate: string;
   membersList?: string[];
 }
 
@@ -34,12 +37,28 @@ const ProjectCard = ({
   tasks, 
   members, 
   color,
+  status,
+  dueDate,
   membersList = []
 }: ProjectCardProps) => {
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "active": return "bg-green-100 text-green-800";
+      case "completed": return "bg-blue-100 text-blue-800";
+      case "on-hold": return "bg-yellow-100 text-yellow-800";
+      default: return "bg-gray-100 text-gray-800";
+    }
+  };
+
   return (
     <div className="border rounded-lg p-5 hover:shadow-md transition-shadow">
       <div className="flex items-start justify-between">
-        <div className={`h-3 w-3 rounded-full ${color} mt-1`}></div>
+        <div className="flex items-center gap-2">
+          <div className={`h-3 w-3 rounded-full ${color} mt-1`}></div>
+          <Badge className={getStatusColor(status)}>
+            {status.charAt(0).toUpperCase() + status.slice(1)}
+          </Badge>
+        </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="icon">
@@ -49,6 +68,7 @@ const ProjectCard = ({
           <DropdownMenuContent align="end">
             <DropdownMenuItem>Edit</DropdownMenuItem>
             <DropdownMenuItem>Share</DropdownMenuItem>
+            <DropdownMenuItem>Archive</DropdownMenuItem>
             <DropdownMenuItem className="text-red-600">Delete</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -92,9 +112,12 @@ const ProjectCard = ({
         </div>
       )}
       
-      <Button className="w-full mt-4" variant="outline">
-        View Project
-      </Button>
+      <div className="flex items-center justify-between mt-4">
+        <span className="text-sm text-muted-foreground">Due {dueDate}</span>
+        <Button className="text-sm" variant="outline">
+          View Project
+        </Button>
+      </div>
     </div>
   );
 };
