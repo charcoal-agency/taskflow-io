@@ -14,7 +14,6 @@ import {
   PieChart,
   Pie,
   Cell,
-  Download,
   Filter
 } from "recharts";
 import { 
@@ -33,7 +32,8 @@ import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { 
   BarChart as BarChartIcon,
-  PieChart as PieChartIcon
+  PieChart as PieChartIcon,
+  Download
 } from "lucide-react";
 
 const Reports = () => {
