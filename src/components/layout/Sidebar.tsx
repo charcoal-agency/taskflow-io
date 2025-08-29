@@ -29,6 +29,7 @@ import { cn } from "@/lib/utils";
 import { useLocation } from "react-router-dom";
 import WorkspaceSwitcher from "./WorkspaceSwitcher";
 import TimeTracker from "./TimeTracker";
+import QuickTaskCreator from "./QuickTaskCreator";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -205,6 +206,8 @@ const Sidebar = () => {
             Messages
           </a>
         </nav>
+
+        <QuickTaskCreator />
 
         <div className="px-3 py-4">
           <div className="flex items-center justify-between mb-2">
