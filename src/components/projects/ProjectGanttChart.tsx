@@ -3,16 +3,9 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
   BarChart3,
-  Calendar,
-  MoreHorizontal
+  Calendar
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 const ProjectGanttChart = () => {
   // Mock data for the Gantt chart
@@ -83,7 +76,7 @@ const ProjectGanttChart = () => {
             Project Timeline (Gantt Chart)
           </div>
           <Button variant="ghost" size="icon">
-            <MoreHorizontal className="h-4 w-4" />
+            <span className="sr-only">More options</span>
           </Button>
         </CardTitle>
         <CardDescription>Visual representation of project schedule</CardDescription>
