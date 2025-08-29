@@ -24,7 +24,8 @@ import TeamCollaboration from "@/components/team/TeamCollaboration";
 import TaskAnalytics from "@/components/tasks/TaskAnalytics";
 import TaskTemplates from "@/components/tasks/TaskTemplates";
 import CreateTaskButton from "@/components/tasks/CreateTaskButton";
-import ProjectCalendar from "@/components/projects/ProjectCalendar";
+import ProjectSprintVisualization from "@/components/projects/ProjectSprintVisualization";
+import ProjectSprintCalendar from "@/components/projects/ProjectSprintCalendar";
 
 const ProjectDetail = () => {
   const [tasks, setTasks] = useState([
@@ -64,28 +65,40 @@ const ProjectDetail = () => {
       title: "Sprint 1: Planning",
       startDate: new Date(2023, 9, 1),
       endDate: new Date(2023, 9, 7),
-      duration: 2
+      duration: 2,
+      tasks: 5,
+      completed: 5,
+      status: "completed" as const
     },
     {
       id: 2,
       title: "Sprint 2: Design",
       startDate: new Date(2023, 9, 8),
       endDate: new Date(2023, 9, 21),
-      duration: 3
+      duration: 3,
+      tasks: 8,
+      completed: 6,
+      status: "in-progress" as const
     },
     {
       id: 3,
       title: "Sprint 3: Development",
       startDate: new Date(2023, 9, 22),
       endDate: new Date(2023, 10, 11),
-      duration: 2.5
+      duration: 2.5,
+      tasks: 10,
+      completed: 0,
+      status: "planned" as const
     },
     {
       id: 4,
       title: "Sprint 4: Testing",
       startDate: new Date(2023, 10, 12),
       endDate: new Date(2023, 10, 14),
-      duration: 1
+      duration: 1,
+      tasks: 4,
+      completed: 0,
+      status: "planned" as const
     }
   ];
 
@@ -200,7 +213,9 @@ const ProjectDetail = () => {
             </CardContent>
           </Card>
           
-          <ProjectCalendar sprints={sprints} />
+          <ProjectSprintCalendar sprints={sprints} />
+          
+          <ProjectSprintVisualization sprints={sprints} />
           
           <Card>
             <CardHeader>
