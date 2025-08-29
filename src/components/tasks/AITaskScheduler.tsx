@@ -43,6 +43,15 @@ const AITaskScheduler = () => {
 
   // Fetch tasks from Supabase
   const fetchTasks = async () => {
+    if (!supabase) {
+      // Return mock data if Supabase is not configured
+      return [
+        { id: 1, title: "Design homepage", project: "Website Redesign", dueDate: "2023-12-15", priority: "High" },
+        { id: 2, title: "Meeting with client", project: "Product Launch", dueDate: "2023-12-10", priority: "Medium" },
+        { id: 3, title: "Update documentation", project: "Marketing Campaign", dueDate: "2023-12-20", priority: "Low" }
+      ];
+    }
+
     const { data, error } = await supabase
       .from('tasks')
       .select('*')
