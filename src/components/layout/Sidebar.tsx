@@ -17,7 +17,8 @@ import {
   FileText,
   Moon,
   Sun,
-  Building2
+  Building2,
+  DollarSign
 } from "lucide-react";
 import { 
   Collapsible, 
@@ -182,6 +183,18 @@ const Sidebar = () => {
           >
             <Users className="h-4 w-4" />
             Team
+          </a>
+          <a
+            href="/billings"
+            className={cn(
+              "flex items-center gap-3 rounded-lg px-3 py-2 transition-all",
+              isActive("/billings") 
+                ? "text-primary bg-primary/10" 
+                : "text-muted-foreground hover:text-primary"
+            )}
+          >
+            <DollarSign className="h-4 w-4" />
+            Billings
           </a>
           <a
             href="#"

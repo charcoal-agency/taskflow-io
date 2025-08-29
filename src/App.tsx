@@ -21,6 +21,8 @@ import Notifications from "./pages/Notifications";
 import Reports from "./pages/Reports";
 import Clients from "./pages/Clients";
 import ClientDetail from "./pages/ClientDetail";
+import Billings from "./pages/Billings";
+import BillingDetail from "./pages/BillingDetail";
 import NotFound from "./pages/NotFound";
 import MainLayout from "./components/layout/MainLayout";
 
@@ -167,6 +169,22 @@ const App = () => (
               element={
                 <MainLayout>
                   <SearchResults />
+                </MainLayout>
+              } 
+            />
+            <Route 
+              path="/billings" 
+              element={
+                <MainLayout>
+                  <Billings />
+                </MainLayout>
+              } 
+            />
+            <Route 
+              path="/billings/:id" 
+              element={
+                <MainLayout>
+                  <BillingDetail />
                 </MainLayout>
               } 
             />
