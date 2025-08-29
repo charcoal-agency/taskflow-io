@@ -17,7 +17,7 @@ import {
   Download,
   Calendar,
   Filter
-} from "lucide-react";
+} from "recharts";
 import { 
   Select,
   SelectContent,
@@ -32,6 +32,10 @@ import {
 } from "@/components/ui/popover";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import { format } from "date-fns";
+import { 
+  BarChart as BarChartIcon,
+  PieChart as PieChartIcon
+} from "lucide-react";
 
 const Reports = () => {
   const [dateRange, setDateRange] = useState<{ from: Date | undefined; to: Date | undefined }>({

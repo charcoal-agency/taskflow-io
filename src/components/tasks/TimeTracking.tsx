@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
@@ -35,11 +35,19 @@ const TimeTracking = () => {
   };
 
   // Simulate timer increment
-  setInterval(() => {
+  useEffect(() => {
+    let interval: NodeJS.Timeout | null = null;
+    
     if (isTracking) {
-      setElapsedTime(prev => prev + 1);
+      interval = setInterval(() => {
+        setElapsedTime(prev => prev + 1);
+      }, 1000);
     }
-  }, 1000);
+    
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [isTracking]);
 
   const totalTrackedTime = trackedTasks.reduce((sum, task) => sum + task.time, 0);
   const dailyGoal = 240; // 4 hours in minutes
