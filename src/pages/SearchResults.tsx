@@ -37,7 +37,9 @@ const SearchResults = () => {
       tasks: 12,
       members: 5,
       color: "bg-blue-500",
-      membersList: ["Alex Johnson", "Sam Smith", "Taylor Brown"]
+      membersList: ["Alex Johnson", "Sam Smith", "Taylor Brown"],
+      status: "active",
+      dueDate: "Dec 15, 2023"
     },
   ];
   
@@ -129,6 +131,8 @@ const SearchResults = () => {
                 members={project.members}
                 color={project.color}
                 membersList={project.membersList}
+                status={project.status}
+                dueDate={project.dueDate}
               />
             ))}
           </div>

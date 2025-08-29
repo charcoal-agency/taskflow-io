@@ -7,7 +7,8 @@ import {
   Plus, 
   MoreHorizontal,
   Share2,
-  Star
+  Star,
+  Archive
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -86,7 +87,7 @@ const ProjectHeader = ({
               Duplicate Project
             </DropdownMenuItem>
             <DropdownMenuItem className="text-red-600">
-              <Trash2 className="h-4 w-4 mr-2" />
+              <Archive className="h-4 w-4 mr-2" />
               Archive Project
             </DropdownMenuItem>
           </DropdownMenuContent>

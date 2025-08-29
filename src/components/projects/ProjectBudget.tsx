@@ -40,9 +40,9 @@ const ProjectBudget = () => {
 
   const getBudgetColor = (spent: number, budget: number) => {
     const percentage = (spent / budget) * 100;
-    if (percentage > 90) return "text-red-500";
-    if (percentage > 75) return "text-yellow-500";
-    return "text-green-500";
+    if (percentage > 90) return "bg-red-500";
+    if (percentage > 75) return "bg-yellow-500";
+    return "bg-green-500";
   };
 
   return (
@@ -94,7 +94,7 @@ const ProjectBudget = () => {
                 <div key={expense.id} className="border rounded-lg p-3">
                   <div className="flex justify-between">
                     <span className="font-medium">{expense.category}</span>
-                    <span className={`font-medium ${getBudgetColor(expense.amount, expense.budget)}`}>
+                    <span className="font-medium">
                       {formatCurrency(expense.amount)} / {formatCurrency(expense.budget)}
                     </span>
                   </div>
@@ -106,7 +106,6 @@ const ProjectBudget = () => {
                     <Progress 
                       value={(expense.amount / expense.budget) * 100} 
                       className="h-2" 
-                      indicatorClassName={getBudgetColor(expense.amount, expense.budget).replace("text-", "")}
                     />
                   </div>
                 </div>
