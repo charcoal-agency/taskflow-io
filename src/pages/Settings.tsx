@@ -7,6 +7,8 @@ import NotificationSettings from "@/components/settings/NotificationSettings";
 import SecuritySettings from "@/components/settings/SecuritySettings";
 import AppearanceSettings from "@/components/settings/AppearanceSettings";
 import IntegrationSettings from "@/components/settings/IntegrationSettings";
+import CalendarSettings from "@/components/settings/CalendarSettings";
+import AISettings from "@/components/settings/AISettings";
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState("profile");
@@ -19,12 +21,14 @@ const Settings = () => {
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-5">
+        <TabsList className="grid w-full grid-cols-7">
           <TabsTrigger value="profile">Profile</TabsTrigger>
           <TabsTrigger value="notifications">Notifications</TabsTrigger>
           <TabsTrigger value="security">Security</TabsTrigger>
           <TabsTrigger value="appearance">Appearance</TabsTrigger>
           <TabsTrigger value="integrations">Integrations</TabsTrigger>
+          <TabsTrigger value="calendar">Calendar</TabsTrigger>
+          <TabsTrigger value="ai">AI</TabsTrigger>
         </TabsList>
         
         <TabsContent value="profile" className="mt-6">
@@ -45,6 +49,14 @@ const Settings = () => {
         
         <TabsContent value="integrations" className="mt-6">
           <IntegrationSettings />
+        </TabsContent>
+        
+        <TabsContent value="calendar" className="mt-6">
+          <CalendarSettings />
+        </TabsContent>
+        
+        <TabsContent value="ai" className="mt-6">
+          <AISettings />
         </TabsContent>
       </Tabs>
     </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import TaskScheduler from "@/components/tasks/TaskScheduler";
+import AITaskScheduler from "@/components/tasks/AITaskScheduler";
 
 const TaskSchedulerWidget = () => {
   return (
@@ -11,7 +11,7 @@ const TaskSchedulerWidget = () => {
         <CardDescription>Optimize your task priorities with AI</CardDescription>
       </CardHeader>
       <CardContent>
-        <TaskScheduler />
+        <AITaskScheduler />
       </CardContent>
     </Card>
   );
