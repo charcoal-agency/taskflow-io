@@ -4,14 +4,17 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { 
   Calendar as CalendarIcon, 
+  CheckCircle,
   Folder, 
   Home, 
   MessageSquare, 
   Plus, 
-  Settings, 
+  Settings as SettingsIcon, 
   Users,
   ChevronDown,
-  Search
+  Search,
+  LayoutGrid,
+  FileText
 } from "lucide-react";
 import { 
   Collapsible, 
@@ -260,7 +263,7 @@ const Sidebar = () => {
               : "text-muted-foreground hover:text-primary"
           )}
         >
-          <Settings className="h-4 w-4" />
+          <SettingsIcon className="h-4 w-4" />
           Settings
         </a>
       </div>

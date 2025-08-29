@@ -13,18 +13,17 @@ import { Progress } from "@/components/ui/progress";
 import StatsCard from "@/components/dashboard/StatsCard";
 import TaskList from "@/components/tasks/TaskList";
 import CreateTaskButton from "@/components/tasks/CreateTaskButton";
+import TaskSchedulerWidget from "@/components/dashboard/TaskSchedulerWidget";
+import ProductivityInsights from "@/components/dashboard/ProductivityInsights";
+import QuickActions from "@/components/dashboard/QuickActions";
+import RecentActivity from "@/components/dashboard/RecentActivity";
+import GoalTracker from "@/components/dashboard/GoalTracker";
 
 const Dashboard = () => {
   const tasks = [
     { id: 1, title: "Design homepage", project: "Website Redesign", dueDate: "Today", priority: "High", completed: false },
     { id: 2, title: "Meeting with client", project: "Product Launch", dueDate: "Tomorrow", priority: "Medium", completed: false },
     { id: 3, title: "Update documentation", project: "Marketing Campaign", dueDate: "In 2 days", priority: "Low", completed: true },
-  ];
-
-  const projects = [
-    { id: 1, name: "Website Redesign", progress: 65, tasks: 12 },
-    { id: 2, name: "Product Launch", progress: 30, tasks: 8 },
-    { id: 3, name: "Marketing Campaign", progress: 90, tasks: 5 },
   ];
 
   return (
@@ -65,6 +64,8 @@ const Dashboard = () => {
         />
       </div>
 
+      <QuickActions />
+
       <div className="grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
@@ -76,29 +77,14 @@ const Dashboard = () => {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Project Progress</CardTitle>
-            <CardDescription>Your active projects</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {projects.map((project) => (
-                <div key={project.id} className="space-y-2">
-                  <div className="flex justify-between">
-                    <h3 className="font-medium">{project.name}</h3>
-                    <span className="text-sm text-muted-foreground">{project.tasks} tasks</span>
-                  </div>
-                  <Progress value={project.progress} />
-                  <div className="flex justify-between text-sm">
-                    <span>{project.progress}% complete</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+        <RecentActivity />
       </div>
+
+      <GoalTracker />
+
+      <TaskSchedulerWidget />
+
+      <ProductivityInsights />
 
       <Card>
         <CardHeader>
