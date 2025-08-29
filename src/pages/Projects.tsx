@@ -32,6 +32,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import CreateProjectButton from "@/components/projects/CreateProjectButton";
 import ProjectFilter from "@/components/projects/ProjectFilter";
+import ProjectCard from "@/components/projects/ProjectCard";
 
 const Projects = () => {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
@@ -188,76 +189,19 @@ const Projects = () => {
       {viewMode === "grid" ? (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredProjects.map((project) => (
-            <Card key={project.id} className="hover:shadow-md transition-shadow">
-              <CardHeader className="pb-3">
-                <div className="flex items-start justify-between">
-                  <div className="flex items-center gap-2">
-                    <Checkbox 
-                      checked={selectedProjects.includes(project.id)}
-                      onCheckedChange={() => toggleProjectSelection(project.id)}
-                    />
-                    <div className={`h-3 w-3 rounded-full ${project.color}`}></div>
-                  </div>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="icon">
-                        <MoreHorizontal className="h-4 w-4" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuItem>Edit</DropdownMenuItem>
-                      <DropdownMenuItem>Share</DropdownMenuItem>
-                      <DropdownMenuItem>Archive</DropdownMenuItem>
-                      <DropdownMenuItem className="text-red-600">Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </div>
-                <CardTitle className="text-lg mt-2">{project.name}</CardTitle>
-                <CardDescription>{project.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div>
-                    <div className="flex justify-between text-sm mb-1">
-                      <span>Progress</span>
-                      <span>{project.progress}%</span>
-                    </div>
-                    <Progress value={project.progress} />
-                  </div>
-                  
-                  <div className="flex items-center justify-between text-sm">
-                    <div className="flex items-center gap-1">
-                      <span className="text-muted-foreground">{project.tasks} tasks</span>
-                    </div>
-                    <Badge className={getStatusColor(project.status)}>
-                      {project.status.charAt(0).toUpperCase() + project.status.slice(1)}
-                    </Badge>
-                  </div>
-                  
-                  <div className="flex items-center justify-between">
-                    <div className="flex -space-x-2">
-                      {project.membersList.slice(0, 3).map((member, index) => (
-                        <Avatar key={index} className="h-6 w-6 border-2 border-background">
-                          <AvatarFallback className="text-xs">
-                            {member.split(' ').map(n => n[0]).join('')}
-                          </AvatarFallback>
-                        </Avatar>
-                      ))}
-                      {project.membersList.length > 3 && (
-                        <div className="h-6 w-6 rounded-full bg-muted border-2 border-background flex items-center justify-center">
-                          <span className="text-xs">+{project.membersList.length - 3}</span>
-                        </div>
-                      )}
-                    </div>
-                    <span className="text-sm text-muted-foreground">Due {project.dueDate}</span>
-                  </div>
-                  
-                  <Button className="w-full" variant="outline">
-                    View Project
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+            <ProjectCard
+              key={project.id}
+              id={project.id}
+              name={project.name}
+              description={project.description}
+              progress={project.progress}
+              tasks={project.tasks}
+              members={project.members}
+              color={project.color}
+              status={project.status}
+              dueDate={project.dueDate}
+              membersList={project.membersList}
+            />
           ))}
         </div>
       ) : (

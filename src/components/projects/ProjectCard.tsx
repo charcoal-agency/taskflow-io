@@ -114,8 +114,8 @@ const ProjectCard = ({
       
       <div className="flex items-center justify-between mt-4">
         <span className="text-sm text-muted-foreground">Due {dueDate}</span>
-        <Button className="text-sm" variant="outline">
-          View Project
+        <Button asChild className="text-sm" variant="outline">
+          <Link to={`/projects/${id}`}>View Project</Link>
         </Button>
       </div>
     </div>
