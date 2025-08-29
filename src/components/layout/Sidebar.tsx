@@ -16,7 +16,8 @@ import {
   LayoutGrid,
   FileText,
   Moon,
-  Sun
+  Sun,
+  Building2
 } from "lucide-react";
 import { 
   Collapsible, 
@@ -57,6 +58,12 @@ const Sidebar = () => {
     { id: 1, name: "Design Assets" },
     { id: 2, name: "Research" },
     { id: 3, name: "Client Docs" }
+  ];
+
+  const clients = [
+    { id: 1, name: "Acme Corp" },
+    { id: 2, name: "Globex Inc" },
+    { id: 3, name: "Wayne Enterprises" }
   ];
 
   const toggleSection = (section: keyof typeof expandedSections) => {
@@ -127,6 +134,18 @@ const Sidebar = () => {
           >
             <LayoutGrid className="h-4 w-4" />
             Projects
+          </a>
+          <a
+            href="/clients"
+            className={cn(
+              "flex items-center gap-3 rounded-lg px-3 py-2 transition-all",
+              isActive("/clients") 
+                ? "text-primary bg-primary/10" 
+                : "text-muted-foreground hover:text-primary"
+            )}
+          >
+            <Building2 className="h-4 w-4" />
+            My Clients
           </a>
           <a
             href="/calendar"

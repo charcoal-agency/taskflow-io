@@ -19,6 +19,8 @@ import DocumentDetail from "./pages/DocumentDetail";
 import TeamMemberDetail from "./pages/TeamMemberDetail";
 import Notifications from "./pages/Notifications";
 import Reports from "./pages/Reports";
+import Clients from "./pages/Clients";
+import ClientDetail from "./pages/ClientDetail";
 import NotFound from "./pages/NotFound";
 import MainLayout from "./components/layout/MainLayout";
 
@@ -77,6 +79,22 @@ const App = () => (
               element={
                 <MainLayout>
                   <ProjectDetail />
+                </MainLayout>
+              } 
+            />
+            <Route 
+              path="/clients" 
+              element={
+                <MainLayout>
+                  <Clients />
+                </MainLayout>
+              } 
+            />
+            <Route 
+              path="/clients/:id" 
+              element={
+                <MainLayout>
+                  <ClientDetail />
                 </MainLayout>
               } 
             />
