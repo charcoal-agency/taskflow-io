@@ -1,5 +1,6 @@
 "use client";
 
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { 
   Calendar, 
@@ -57,9 +58,9 @@ const TaskCard = ({
         
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between">
-            <h3 className={`font-medium ${completed ? "line-through text-muted-foreground" : ""}`}>
+            <Link to={`/tasks/${id}`} className="font-medium hover:underline">
               {title}
-            </h3>
+            </Link>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="h-8 w-8">

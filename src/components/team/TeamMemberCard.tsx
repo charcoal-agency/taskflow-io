@@ -1,5 +1,6 @@
 "use client";
 
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { 
   MoreHorizontal,
@@ -64,7 +65,9 @@ const TeamMemberCard = ({
             <div className={`absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-background ${getStatusColor()}`}></div>
           </div>
           <div>
-            <div className="font-medium">{name}</div>
+            <Link to={`/team/${id}`} className="font-medium hover:underline">
+              {name}
+            </Link>
             <div className="text-sm text-muted-foreground flex items-center">
               <Mail className="h-3 w-3 mr-1" />
               {email}

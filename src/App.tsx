@@ -13,6 +13,12 @@ import Documents from "./pages/Documents";
 import Team from "./pages/Team";
 import Settings from "./pages/Settings";
 import SearchResults from "./pages/SearchResults";
+import TaskDetail from "./pages/TaskDetail";
+import ProjectDetail from "./pages/ProjectDetail";
+import DocumentDetail from "./pages/DocumentDetail";
+import TeamMemberDetail from "./pages/TeamMemberDetail";
+import Notifications from "./pages/Notifications";
+import Reports from "./pages/Reports";
 import NotFound from "./pages/NotFound";
 import MainLayout from "./components/layout/MainLayout";
 
@@ -51,10 +57,26 @@ const App = () => (
               } 
             />
             <Route 
+              path="/tasks/:id" 
+              element={
+                <MainLayout>
+                  <TaskDetail />
+                </MainLayout>
+              } 
+            />
+            <Route 
               path="/projects" 
               element={
                 <MainLayout>
                   <Projects />
+                </MainLayout>
+              } 
+            />
+            <Route 
+              path="/projects/:id" 
+              element={
+                <MainLayout>
+                  <ProjectDetail />
                 </MainLayout>
               } 
             />
@@ -75,6 +97,14 @@ const App = () => (
               } 
             />
             <Route 
+              path="/documents/:id" 
+              element={
+                <MainLayout>
+                  <DocumentDetail />
+                </MainLayout>
+              } 
+            />
+            <Route 
               path="/team" 
               element={
                 <MainLayout>
@@ -83,10 +113,34 @@ const App = () => (
               } 
             />
             <Route 
+              path="/team/:id" 
+              element={
+                <MainLayout>
+                  <TeamMemberDetail />
+                </MainLayout>
+              } 
+            />
+            <Route 
               path="/settings" 
               element={
                 <MainLayout>
                   <Settings />
+                </MainLayout>
+              } 
+            />
+            <Route 
+              path="/notifications" 
+              element={
+                <MainLayout>
+                  <Notifications />
+                </MainLayout>
+              } 
+            />
+            <Route 
+              path="/reports" 
+              element={
+                <MainLayout>
+                  <Reports />
                 </MainLayout>
               } 
             />

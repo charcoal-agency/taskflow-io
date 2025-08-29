@@ -1,5 +1,6 @@
 "use client";
 
+import { Link } from "react-router-dom";
 import { Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -25,7 +26,12 @@ const NotificationBadge = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-80">
         <div className="p-4">
-          <h3 className="font-medium mb-2">Notifications</h3>
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="font-medium">Notifications</h3>
+            <Link to="/notifications" className="text-sm text-primary hover:underline">
+              View All
+            </Link>
+          </div>
           <div className="space-y-3">
             <div className="border-b pb-3">
               <p className="text-sm font-medium">New task assigned</p>
@@ -43,8 +49,10 @@ const NotificationBadge = () => {
               <p className="text-xs text-muted-foreground mt-1">3 hours ago</p>
             </div>
           </div>
-          <Button variant="link" className="w-full mt-2 text-xs">
-            View all notifications
+          <Button variant="link" className="w-full mt-2 text-xs" asChild>
+            <Link to="/notifications">
+              View all notifications
+            </Link>
           </Button>
         </div>
       </DropdownMenuContent>

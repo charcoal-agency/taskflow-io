@@ -1,5 +1,6 @@
 "use client";
 
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { 
   MoreHorizontal,
@@ -53,7 +54,9 @@ const ProjectCard = ({
         </DropdownMenu>
       </div>
       
-      <h3 className="text-lg font-semibold mt-3">{name}</h3>
+      <Link to={`/projects/${id}`} className="font-semibold mt-3 hover:underline">
+        {name}
+      </Link>
       <p className="text-muted-foreground text-sm mt-1">{description}</p>
       
       <div className="mt-4">

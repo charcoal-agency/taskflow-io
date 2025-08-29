@@ -1,5 +1,6 @@
 "use client";
 
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { 
   FileText,
@@ -62,7 +63,9 @@ const DocumentCard = ({
         <div className="flex items-center gap-3">
           {getFileIcon()}
           <div>
-            <h3 className="font-medium">{name}</h3>
+            <Link to={`/documents/${id}`} className="font-medium hover:underline">
+              {name}
+            </Link>
             <p className="text-sm text-muted-foreground">
               {isFolder ? `${items} items • Updated ${updatedAt}` : `Updated ${updatedAt}`}
             </p>
