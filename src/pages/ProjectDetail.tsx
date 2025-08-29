@@ -21,9 +21,9 @@ import TaskTemplates from "@/components/tasks/TaskTemplates";
 
 const ProjectDetail = () => {
   const [tasks, setTasks] = useState([
-    { id: 1, title: "Design homepage", project: "Website Redesign", dueDate: "Today", priority: "High", completed: false, assignedTo: "Alex Johnson" },
-    { id: 2, title: "Meeting with client", project: "Product Launch", dueDate: "Tomorrow", priority: "Medium", completed: false },
-    { id: 3, title: "Update documentation", project: "Marketing Campaign", dueDate: "In 2 days", priority: "Low", completed: true },
+    { id: 1, title: "Design homepage", project: "Website Redesign", dueDate: "Today", priority: "High" as const, completed: false, assignedTo: "Alex Johnson" },
+    { id: 2, title: "Meeting with client", project: "Product Launch", dueDate: "Tomorrow", priority: "Medium" as const, completed: false },
+    { id: 3, title: "Update documentation", project: "Marketing Campaign", dueDate: "In 2 days", priority: "Low" as const, completed: true },
   ]);
 
   const project = {

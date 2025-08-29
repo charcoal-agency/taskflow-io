@@ -13,8 +13,7 @@ import {
   ResponsiveContainer,
   PieChart,
   Pie,
-  Cell,
-  Filter
+  Cell
 } from "recharts";
 import { 
   Select,
@@ -33,7 +32,8 @@ import { format } from "date-fns";
 import { 
   BarChart as BarChartIcon,
   PieChart as PieChartIcon,
-  Download
+  Download,
+  Filter
 } from "lucide-react";
 
 const Reports = () => {
@@ -65,6 +65,12 @@ const Reports = () => {
     { name: 'Jordan Lee', tasks: 5, color: '#f59e0b' },
   ];
 
+  const handleDateRangeSelect = (range: { from: Date | undefined; to: Date | undefined } | undefined) => {
+    if (range) {
+      setDateRange(range);
+    }
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -86,7 +92,7 @@ const Reports = () => {
               <Calendar
                 mode="range"
                 selected={dateRange}
-                onSelect={setDateRange}
+                onSelect={handleDateRangeSelect}
                 initialFocus
               />
             </PopoverContent>

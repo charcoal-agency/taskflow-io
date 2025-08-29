@@ -230,7 +230,7 @@ const TaskDetail = () => {
                 <Button className="w-full" variant="outline">
                   Duplicate Task
                 </Button>
-                <Button className="w-full" variant="outline" className="text-red-600">
+                <Button className="w-full text-red-600" variant="outline">
                   Delete Task
                 </Button>
               </div>

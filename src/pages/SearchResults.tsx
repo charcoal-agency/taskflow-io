@@ -24,8 +24,8 @@ const SearchResults = () => {
   
   // Simulated search results
   const tasks = [
-    { id: 1, title: "Design homepage", project: "Website Redesign", dueDate: "Today", priority: "High", completed: false, assignedTo: "Alex Johnson" },
-    { id: 2, title: "Create wireframes", project: "Website Redesign", dueDate: "In 3 days", priority: "High", completed: false },
+    { id: 1, title: "Design homepage", project: "Website Redesign", dueDate: "Today", priority: "High" as const, completed: false, assignedTo: "Alex Johnson" },
+    { id: 2, title: "Create wireframes", project: "Website Redesign", dueDate: "In 3 days", priority: "High" as const, completed: false },
   ];
   
   const projects = [
@@ -52,7 +52,7 @@ const SearchResults = () => {
       name: "Alex Johnson", 
       role: "Project Manager", 
       email: "alex@example.com", 
-      status: "online",
+      status: "online" as const,
       tasks: 12
     },
     { 
@@ -60,7 +60,7 @@ const SearchResults = () => {
       name: "Sam Smith", 
       role: "Designer", 
       email: "sam@example.com", 
-      status: "online",
+      status: "online" as const,
       tasks: 8
     },
   ];

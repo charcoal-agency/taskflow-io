@@ -13,7 +13,7 @@ const Team = () => {
       name: "Alex Johnson", 
       role: "Project Manager", 
       email: "alex@example.com", 
-      status: "online",
+      status: "online" as const,
       tasks: 12
     },
     { 
@@ -21,7 +21,7 @@ const Team = () => {
       name: "Sam Smith", 
       role: "Designer", 
       email: "sam@example.com", 
-      status: "online",
+      status: "online" as const,
       tasks: 8
     },
     { 
@@ -29,7 +29,7 @@ const Team = () => {
       name: "Taylor Brown", 
       role: "Developer", 
       email: "taylor@example.com", 
-      status: "away",
+      status: "away" as const,
       tasks: 15
     },
     { 
@@ -37,7 +37,7 @@ const Team = () => {
       name: "Jordan Lee", 
       role: "Marketing", 
       email: "jordan@example.com", 
-      status: "offline",
+      status: "offline" as const,
       tasks: 5
     },
   ];

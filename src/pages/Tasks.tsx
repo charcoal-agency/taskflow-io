@@ -13,11 +13,11 @@ const Tasks = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const tasks = [
-    { id: 1, title: "Design homepage", project: "Website Redesign", dueDate: "Today", priority: "High", completed: false, assignedTo: "Alex Johnson" },
-    { id: 2, title: "Meeting with client", project: "Product Launch", dueDate: "Tomorrow", priority: "Medium", completed: false },
-    { id: 3, title: "Update documentation", project: "Marketing Campaign", dueDate: "In 2 days", priority: "Low", completed: true },
-    { id: 4, title: "Research competitors", project: "Product Launch", dueDate: "Next week", priority: "Medium", completed: false, assignedTo: "Sam Smith" },
-    { id: 5, title: "Create wireframes", project: "Website Redesign", dueDate: "In 3 days", priority: "High", completed: false },
+    { id: 1, title: "Design homepage", project: "Website Redesign", dueDate: "Today", priority: "High" as const, completed: false, assignedTo: "Alex Johnson" },
+    { id: 2, title: "Meeting with client", project: "Product Launch", dueDate: "Tomorrow", priority: "Medium" as const, completed: false },
+    { id: 3, title: "Update documentation", project: "Marketing Campaign", dueDate: "In 2 days", priority: "Low" as const, completed: true },
+    { id: 4, title: "Research competitors", project: "Product Launch", dueDate: "Next week", priority: "Medium" as const, completed: false, assignedTo: "Sam Smith" },
+    { id: 5, title: "Create wireframes", project: "Website Redesign", dueDate: "In 3 days", priority: "High" as const, completed: false },
   ];
 
   const filteredTasks = tasks.filter(task => 

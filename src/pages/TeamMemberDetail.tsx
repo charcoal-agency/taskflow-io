@@ -31,9 +31,9 @@ const TeamMemberDetail = () => {
   };
 
   const tasks = [
-    { id: 1, title: "Design homepage", project: "Website Redesign", dueDate: "Today", priority: "High", completed: false },
-    { id: 2, title: "Create wireframes", project: "Website Redesign", dueDate: "In 3 days", priority: "High", completed: false },
-    { id: 3, title: "Update design system", project: "Product Launch", dueDate: "Next week", priority: "Medium", completed: true },
+    { id: 1, title: "Design homepage", project: "Website Redesign", dueDate: "Today", priority: "High" as const, completed: false },
+    { id: 2, title: "Create wireframes", project: "Website Redesign", dueDate: "In 3 days", priority: "High" as const, completed: false },
+    { id: 3, title: "Update design system", project: "Product Launch", dueDate: "Next week", priority: "Medium" as const, completed: true },
   ];
 
   const getStatusColor = () => {

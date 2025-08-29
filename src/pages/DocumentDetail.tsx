@@ -104,7 +104,7 @@ const DocumentDetail = () => {
                   <Eye className="h-4 w-4 mr-2" />
                   View History
                 </Button>
-                <Button className="w-full" variant="outline" className="text-red-600">
+                <Button className="w-full text-red-600" variant="outline">
                   Delete Document
                 </Button>
               </div>
