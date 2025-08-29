@@ -28,6 +28,7 @@ import {
 import { cn } from "@/lib/utils";
 import { useLocation } from "react-router-dom";
 import WorkspaceSwitcher from "./WorkspaceSwitcher";
+import TimeTracker from "./TimeTracker";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -297,6 +298,8 @@ const Sidebar = () => {
           </Collapsible>
         </div>
       </div>
+
+      <TimeTracker />
 
       <div className="p-4 border-t">
         <div className="flex items-center justify-between mb-4">
