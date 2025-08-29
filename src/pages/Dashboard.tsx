@@ -7,16 +7,18 @@ import {
   Clock, 
   CheckCircle, 
   AlertCircle, 
-  Plus,
   TrendingUp
 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
+import StatsCard from "@/components/dashboard/StatsCard";
+import TaskList from "@/components/tasks/TaskList";
+import CreateTaskButton from "@/components/tasks/CreateTaskButton";
 
 const Dashboard = () => {
   const tasks = [
-    { id: 1, title: "Design homepage", project: "Website Redesign", due: "Today", priority: "High" },
-    { id: 2, title: "Meeting with client", project: "Product Launch", due: "Tomorrow", priority: "Medium" },
-    { id: 3, title: "Update documentation", project: "Marketing Campaign", due: "In 2 days", priority: "Low" },
+    { id: 1, title: "Design homepage", project: "Website Redesign", dueDate: "Today", priority: "High", completed: false },
+    { id: 2, title: "Meeting with client", project: "Product Launch", dueDate: "Tomorrow", priority: "Medium", completed: false },
+    { id: 3, title: "Update documentation", project: "Marketing Campaign", dueDate: "In 2 days", priority: "Low", completed: true },
   ];
 
   const projects = [
@@ -29,53 +31,38 @@ const Dashboard = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold">Dashboard</h1>
-        <Button>
-          <Plus className="mr-2 h-4 w-4" />
-          New Task
-        </Button>
+        <CreateTaskButton />
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Tasks</CardTitle>
-            <CheckCircle className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">24</div>
-            <p className="text-xs text-muted-foreground">+2 from last week</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Pending Tasks</CardTitle>
-            <Clock className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">8</div>
-            <p className="text-xs text-muted-foreground">3 due today</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Overdue Tasks</CardTitle>
-            <AlertCircle className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">2</div>
-            <p className="text-xs text-muted-foreground">Requires attention</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Productivity</CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">78%</div>
-            <p className="text-xs text-muted-foreground">+12% from last week</p>
-          </CardContent>
-        </Card>
+        <StatsCard
+          title="Total Tasks"
+          value="24"
+          description="+2 from last week"
+          icon={<CheckCircle className="h-4 w-4 text-muted-foreground" />}
+          trend="up"
+          trendValue="+12%"
+        />
+        <StatsCard
+          title="Pending Tasks"
+          value="8"
+          description="3 due today"
+          icon={<Clock className="h-4 w-4 text-muted-foreground" />}
+        />
+        <StatsCard
+          title="Overdue Tasks"
+          value="2"
+          description="Requires attention"
+          icon={<AlertCircle className="h-4 w-4 text-muted-foreground" />}
+        />
+        <StatsCard
+          title="Productivity"
+          value="78%"
+          description="+12% from last week"
+          icon={<TrendingUp className="h-4 w-4 text-muted-foreground" />}
+          trend="up"
+          trendValue="+12%"
+        />
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
@@ -85,28 +72,7 @@ const Dashboard = () => {
             <CardDescription>Your tasks due soon</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
-              {tasks.map((task) => (
-                <div key={task.id} className="flex items-center justify-between p-3 border rounded-lg">
-                  <div>
-                    <h3 className="font-medium">{task.title}</h3>
-                    <p className="text-sm text-muted-foreground">{task.project}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-sm">{task.due}</p>
-                    <span className={`text-xs px-2 py-1 rounded-full ${
-                      task.priority === "High" 
-                        ? "bg-red-100 text-red-800" 
-                        : task.priority === "Medium" 
-                          ? "bg-yellow-100 text-yellow-800" 
-                          : "bg-green-100 text-green-800"
-                    }`}>
-                      {task.priority}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <TaskList tasks={tasks} />
           </CardContent>
         </Card>
 

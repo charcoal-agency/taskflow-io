@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ThemeToggle from "@/components/layout/ThemeToggle";
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState("profile");
@@ -191,19 +192,14 @@ const Settings = () => {
             <div className="space-y-4">
               <div>
                 <h3 className="font-medium mb-2">Theme</h3>
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="border rounded-lg p-4 cursor-pointer hover:border-primary">
-                    <div className="h-32 bg-white border rounded mb-2"></div>
-                    <p className="text-center">Light</p>
+                <div className="flex items-center justify-between p-4 border rounded-lg">
+                  <div>
+                    <p className="font-medium">Dark Mode</p>
+                    <p className="text-sm text-muted-foreground">
+                      Toggle between light and dark themes
+                    </p>
                   </div>
-                  <div className="border rounded-lg p-4 cursor-pointer hover:border-primary">
-                    <div className="h-32 bg-gray-900 border rounded mb-2"></div>
-                    <p className="text-center">Dark</p>
-                  </div>
-                  <div className="border rounded-lg p-4 cursor-pointer border-primary">
-                    <div className="h-32 bg-gradient-to-br from-gray-100 to-gray-900 border rounded mb-2"></div>
-                    <p className="text-center font-medium">System</p>
-                  </div>
+                  <ThemeToggle />
                 </div>
               </div>
               

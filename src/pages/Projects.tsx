@@ -1,14 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Plus, Search, Filter, MoreHorizontal } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Progress } from "@/components/ui/progress";
+import { Plus, Search, Filter } from "lucide-react";
+import ProjectCard from "@/components/projects/ProjectCard";
 
 const Projects = () => {
   const projects = [
@@ -19,7 +13,8 @@ const Projects = () => {
       progress: 65, 
       tasks: 12,
       members: 5,
-      color: "bg-blue-500"
+      color: "bg-blue-500",
+      membersList: ["Alex Johnson", "Sam Smith", "Taylor Brown"]
     },
     { 
       id: 2, 
@@ -28,7 +23,8 @@ const Projects = () => {
       progress: 30, 
       tasks: 8,
       members: 3,
-      color: "bg-green-500"
+      color: "bg-green-500",
+      membersList: ["Jordan Lee", "Taylor Brown"]
     },
     { 
       id: 3, 
@@ -37,7 +33,8 @@ const Projects = () => {
       progress: 90, 
       tasks: 5,
       members: 7,
-      color: "bg-purple-500"
+      color: "bg-purple-500",
+      membersList: ["Alex Johnson", "Sam Smith", "Jordan Lee", "Taylor Brown"]
     },
   ];
 
@@ -68,43 +65,17 @@ const Projects = () => {
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => (
-          <div key={project.id} className="border rounded-lg p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start justify-between">
-              <div className={`h-3 w-3 rounded-full ${project.color} mt-1`}></div>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon">
-                    <MoreHorizontal className="h-4 w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem>Edit</DropdownMenuItem>
-                  <DropdownMenuItem>Share</DropdownMenuItem>
-                  <DropdownMenuItem className="text-red-600">Delete</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-            
-            <h3 className="text-xl font-semibold mt-3">{project.name}</h3>
-            <p className="text-muted-foreground text-sm mt-2">{project.description}</p>
-            
-            <div className="mt-4">
-              <div className="flex justify-between text-sm mb-1">
-                <span>Progress</span>
-                <span>{project.progress}%</span>
-              </div>
-              <Progress value={project.progress} />
-            </div>
-            
-            <div className="flex justify-between mt-4 text-sm">
-              <span>{project.tasks} tasks</span>
-              <span>{project.members} members</span>
-            </div>
-            
-            <Button className="w-full mt-4" variant="outline">
-              View Project
-            </Button>
-          </div>
+          <ProjectCard
+            key={project.id}
+            id={project.id}
+            name={project.name}
+            description={project.description}
+            progress={project.progress}
+            tasks={project.tasks}
+            members={project.members}
+            color={project.color}
+            membersList={project.membersList}
+          />
         ))}
       </div>
     </div>

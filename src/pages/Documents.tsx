@@ -1,19 +1,14 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Plus, Search, Filter, Folder, FileText, MoreHorizontal } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { Plus, Search, Filter } from "lucide-react";
+import DocumentCard from "@/components/documents/DocumentCard";
 
 const Documents = () => {
   const folders = [
-    { id: 1, name: "Design Assets", items: 12, updatedAt: "2 days ago" },
-    { id: 2, name: "Research", items: 8, updatedAt: "1 week ago" },
-    { id: 3, name: "Client Docs", items: 15, updatedAt: "3 days ago" },
+    { id: 1, name: "Design Assets", type: "folder", updatedAt: "2 days ago", items: 12 },
+    { id: 2, name: "Research", type: "folder", updatedAt: "1 week ago", items: 8 },
+    { id: 3, name: "Client Docs", type: "folder", updatedAt: "3 days ago", items: 15 },
   ];
 
   const documents = [
@@ -52,34 +47,15 @@ const Documents = () => {
         <h2 className="text-xl font-semibold mb-4">Folders</h2>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {folders.map((folder) => (
-            <div 
-              key={folder.id} 
-              className="border rounded-lg p-4 hover:bg-muted/50 transition-colors cursor-pointer"
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <Folder className="h-8 w-8 text-blue-500" />
-                  <div>
-                    <h3 className="font-medium">{folder.name}</h3>
-                    <p className="text-sm text-muted-foreground">
-                      {folder.items} items • Updated {folder.updatedAt}
-                    </p>
-                  </div>
-                </div>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon">
-                      <MoreHorizontal className="h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuItem>Open</DropdownMenuItem>
-                    <DropdownMenuItem>Rename</DropdownMenuItem>
-                    <DropdownMenuItem className="text-red-600">Delete</DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-            </div>
+            <DocumentCard
+              key={folder.id}
+              id={folder.id}
+              name={folder.name}
+              type={folder.type}
+              updatedAt={folder.updatedAt}
+              isFolder={true}
+              items={folder.items}
+            />
           ))}
         </div>
       </div>
@@ -100,18 +76,12 @@ const Documents = () => {
               <div key={doc.id} className="p-4 hover:bg-muted/50 cursor-pointer">
                 <div className="grid grid-cols-12 gap-4 items-center">
                   <div className="col-span-1">
-                    <FileText className="h-5 w-5 text-muted-foreground" />
-                  </div>
-                  <div className="col-span-6 font-medium">
-                    {doc.name}
-                  </div>
-                  <div className="col-span-3">
-                    <span className="bg-muted px-2 py-1 rounded text-xs">
-                      {doc.type.toUpperCase()}
-                    </span>
-                  </div>
-                  <div className="col-span-2 text-sm text-muted-foreground">
-                    {doc.updatedAt}
+                    <DocumentCard
+                      id={doc.id}
+                      name={doc.name}
+                      type={doc.type}
+                      updatedAt={doc.updatedAt}
+                    />
                   </div>
                 </div>
               </div>

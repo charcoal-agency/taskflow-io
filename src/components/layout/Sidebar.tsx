@@ -11,11 +11,7 @@ import {
   Settings, 
   Users,
   ChevronDown,
-  Search,
-  Bell,
-  CheckCircle,
-  LayoutGrid,
-  FileText
+  Search
 } from "lucide-react";
 import { 
   Collapsible, 
@@ -24,22 +20,16 @@ import {
 } from "@/components/ui/collapsible";
 import { cn } from "@/lib/utils";
 import { useLocation } from "react-router-dom";
+import WorkspaceSwitcher from "./WorkspaceSwitcher";
 
 const Sidebar = () => {
   const location = useLocation();
-  const [activeWorkspace, setActiveWorkspace] = useState("Personal");
   const [expandedSections, setExpandedSections] = useState({
     projects: true,
     folders: true
   });
 
   const isActive = (path: string) => location.pathname === path;
-
-  const workspaces = [
-    { id: 1, name: "Personal" },
-    { id: 2, name: "Work" },
-    { id: 3, name: "Freelance" }
-  ];
 
   const projects = [
     { id: 1, name: "Website Redesign", color: "bg-blue-500" },
@@ -68,6 +58,10 @@ const Sidebar = () => {
           <Button variant="ghost" size="icon">
             <Plus className="h-4 w-4" />
           </Button>
+        </div>
+        
+        <div className="mt-4">
+          <WorkspaceSwitcher />
         </div>
         
         <div className="mt-4 relative">
@@ -172,21 +166,24 @@ const Sidebar = () => {
           </div>
           
           <div className="space-y-1">
-            {workspaces.map((workspace) => (
-              <button
-                key={workspace.id}
-                className={cn(
-                  "w-full flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors",
-                  activeWorkspace === workspace.name 
-                    ? "bg-primary/10 text-primary" 
-                    : "text-muted-foreground hover:bg-muted"
-                )}
-                onClick={() => setActiveWorkspace(workspace.name)}
-              >
-                <div className="h-2 w-2 rounded-full bg-primary"></div>
-                {workspace.name}
-              </button>
-            ))}
+            <button
+              className="w-full flex items-center gap-2 rounded-md px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted"
+            >
+              <div className="h-2 w-2 rounded-full bg-primary"></div>
+              Personal
+            </button>
+            <button
+              className="w-full flex items-center gap-2 rounded-md px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted"
+            >
+              <div className="h-2 w-2 rounded-full bg-primary"></div>
+              Work
+            </button>
+            <button
+              className="w-full flex items-center gap-2 rounded-md px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted"
+            >
+              <div className="h-2 w-2 rounded-full bg-primary"></div>
+              Freelance
+            </button>
           </div>
         </div>
 
@@ -255,8 +252,13 @@ const Sidebar = () => {
 
       <div className="p-4 border-t">
         <a
-          href="#"
-          className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+          href="/settings"
+          className={cn(
+            "flex items-center gap-3 rounded-lg px-3 py-2 transition-all",
+            isActive("/settings") 
+              ? "text-primary bg-primary/10" 
+              : "text-muted-foreground hover:text-primary"
+          )}
         >
           <Settings className="h-4 w-4" />
           Settings
