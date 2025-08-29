@@ -26,7 +26,16 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 
-const TaskFilter = () => {
+interface TaskFilterProps {
+  onFilterChange: (filters: {
+    priority: string[];
+    status: string[];
+    assignee: string[];
+    dueDate: "all" | "today" | "week" | "month";
+  }) => void;
+}
+
+const TaskFilter = ({ onFilterChange }: TaskFilterProps) => {
   const [open, setOpen] = useState(false);
   const [filters, setFilters] = useState({
     priority: [] as string[],
@@ -62,6 +71,22 @@ const TaskFilter = () => {
     }));
   };
 
+  const handleApplyFilters = () => {
+    onFilterChange(filters);
+    setOpen(false);
+  };
+
+  const handleResetFilters = () => {
+    const resetFilters = {
+      priority: [],
+      status: [],
+      assignee: [],
+      dueDate: "all" as const
+    };
+    setFilters(resetFilters);
+    onFilterChange(resetFilters);
+  };
+
   const priorities = [
     { value: "high", label: "High", color: "bg-red-100 text-red-800" },
     { value: "medium", label: "Medium", color: "bg-yellow-100 text-yellow-800" },
@@ -93,6 +118,12 @@ const TaskFilter = () => {
         <Button variant="outline">
           <Filter className="h-4 w-4 mr-2" />
           Filter
+          {(filters.priority.length > 0 || 
+            filters.status.length > 0 || 
+            filters.assignee.length > 0 || 
+            filters.dueDate !== "all") && (
+            <span className="ml-2 h-1.5 w-1.5 rounded-full bg-primary"></span>
+          )}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-80 p-0" align="start">
@@ -199,16 +230,11 @@ const TaskFilter = () => {
           <Button 
             variant="ghost" 
             size="sm"
-            onClick={() => setFilters({
-              priority: [],
-              status: [],
-              assignee: [],
-              dueDate: "all"
-            })}
+            onClick={handleResetFilters}
           >
             Reset
           </Button>
-          <Button size="sm" onClick={() => setOpen(false)}>
+          <Button size="sm" onClick={handleApplyFilters}>
             Apply Filters
           </Button>
         </div>
