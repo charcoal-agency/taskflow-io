@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { Plus, Search, Filter } from "lucide-react";
 import DocumentCard from "@/components/documents/DocumentCard";
-import CreateDocumentButton from "@/components/documents/CreateDocumentButton";
 
 const Documents = () => {
   const folders = [
@@ -23,7 +22,10 @@ const Documents = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold">Documents</h1>
-        <CreateDocumentButton />
+        <Button>
+          <Plus className="mr-2 h-4 w-4" />
+          New Document
+        </Button>
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4">

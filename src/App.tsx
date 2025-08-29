@@ -12,7 +12,6 @@ import Calendar from "./pages/Calendar";
 import Documents from "./pages/Documents";
 import Team from "./pages/Team";
 import Settings from "./pages/Settings";
-import SearchResults from "./pages/SearchResults";
 import NotFound from "./pages/NotFound";
 import MainLayout from "./components/layout/MainLayout";
 
@@ -87,14 +86,6 @@ const App = () => (
               element={
                 <MainLayout>
                   <Settings />
-                </MainLayout>
-              } 
-            />
-            <Route 
-              path="/search" 
-              element={
-                <MainLayout>
-                  <SearchResults />
                 </MainLayout>
               } 
             />
