@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Plus, Search, Filter } from "lucide-react";
 import TeamMemberCard from "@/components/team/TeamMemberCard";
+import InviteMemberButton from "@/components/team/InviteMemberButton";
 
 const Team = () => {
   const teamMembers = [
@@ -44,10 +45,7 @@ const Team = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold">Team</h1>
-        <Button>
-          <Plus className="mr-2 h-4 w-4" />
-          Invite Member
-        </Button>
+        <InviteMemberButton />
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4">
