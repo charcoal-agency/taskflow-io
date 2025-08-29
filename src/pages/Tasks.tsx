@@ -2,164 +2,127 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Plus, Filter } from "lucide-react";
-import SearchBar from "@/components/SearchBar";
-import FilterBar from "@/components/FilterBar";
-import TaskCard from "@/components/tasks/TaskCard";
-import TaskModal from "@/components/tasks/TaskModal";
-import { CheckCircle } from "lucide-react";
+import { 
+  Plus, 
+  Search, 
+  Filter,
+  Calendar,
+  Flag,
+  MoreHorizontal
+} from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([
-    { 
-      id: 1, 
-      title: "Design homepage", 
-      project: "Website Redesign", 
-      dueDate: "Today", 
-      priority: "high", 
-      completed: false,
-      assignee: { name: "Alex Johnson", avatar: "https://i.pravatar.cc/150?u=1" },
-      attachments: 3
-    },
-    { 
-      id: 2, 
-      title: "Meeting with client", 
-      project: "Product Launch", 
-      dueDate: "Tomorrow", 
-      priority: "medium", 
-      completed: false,
-      assignee: { name: "Sam Smith", avatar: "https://i.pravatar.cc/150?u=2" }
-    },
-    { 
-      id: 3, 
-      title: "Update documentation", 
-      project: "Marketing Campaign", 
-      dueDate: "In 2 days", 
-      priority: "low", 
-      completed: true,
-      assignee: { name: "Taylor Brown" }
-    },
-    { 
-      id: 4, 
-      title: "Research competitors", 
-      project: "Product Launch", 
-      dueDate: "Next week", 
-      priority: "medium", 
-      completed: false,
-      assignee: { name: "Jordan Lee", avatar: "https://i.pravatar.cc/150?u=4" },
-      attachments: 1
-    },
-    { 
-      id: 5, 
-      title: "Create wireframes", 
-      project: "Website Redesign", 
-      dueDate: "In 3 days", 
-      priority: "high", 
-      completed: false,
-      assignee: { name: "Alex Johnson", avatar: "https://i.pravatar.cc/150?u=1" }
-    },
+    { id: 1, title: "Design homepage", project: "Website Redesign", due: "Today", priority: "High", completed: false },
+    { id: 2, title: "Meeting with client", project: "Product Launch", due: "Tomorrow", priority: "Medium", completed: false },
+    { id: 3, title: "Update documentation", project: "Marketing Campaign", due: "In 2 days", priority: "Low", completed: true },
+    { id: 4, title: "Research competitors", project: "Product Launch", due: "Next week", priority: "Medium", completed: false },
+    { id: 5, title: "Create wireframes", project: "Website Redesign", due: "In 3 days", priority: "High", completed: false },
   ]);
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [activeFilters, setActiveFilters] = useState<string[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedTask, setSelectedTask] = useState<any>(null);
-
-  const toggleTaskComplete = (id: number) => {
+  const toggleTask = (id: number) => {
     setTasks(tasks.map(task => 
       task.id === id ? { ...task, completed: !task.completed } : task
     ));
-  };
-
-  const handleFilterChange = (filterId: string, isActive: boolean) => {
-    if (isActive) {
-      setActiveFilters([...activeFilters, filterId]);
-    } else {
-      setActiveFilters(activeFilters.filter(id => id !== filterId));
-    }
-  };
-
-  const filteredTasks = tasks.filter(task => {
-    const matchesSearch = task.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          task.project?.toLowerCase().includes(searchQuery.toLowerCase());
-    
-    // For demo purposes, we'll just return all tasks if no filters are active
-    // In a real app, you would implement actual filtering logic here
-    return matchesSearch;
-  });
-
-  const handleSaveTask = (task: any) => {
-    console.log("Saving task:", task);
-    // In a real app, you would save this to your database
-    // For now, we'll just log it
   };
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold">Tasks</h1>
-        <Button onClick={() => setIsModalOpen(true)}>
+        <Button>
           <Plus className="mr-2 h-4 w-4" />
           New Task
         </Button>
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4">
-        <SearchBar 
-          placeholder="Search tasks..." 
-          onSearch={setSearchQuery}
-          className="flex-1"
-        />
-        <FilterBar
-          filters={[
-            { id: "completed", label: "Completed", value: "completed" },
-            { id: "pending", label: "Pending", value: "pending" },
-            { id: "high-priority", label: "High Priority", value: "high" },
-          ]}
-          activeFilters={activeFilters}
-          onFilterChange={handleFilterChange}
-        />
-      </div>
-
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {filteredTasks.map((task) => (
-          <TaskCard
-            key={task.id}
-            id={task.id}
-            title={task.title}
-            project={task.project}
-            dueDate={task.dueDate}
-            priority={task.priority as "low" | "medium" | "high"}
-            completed={task.completed}
-            assignee={task.assignee}
-            attachments={task.attachments}
-            onToggleComplete={toggleTaskComplete}
-            onEdit={() => {
-              setSelectedTask(task);
-              setIsModalOpen(true);
-            }}
-            onDelete={(id) => console.log("Delete task", id)}
+        <div className="relative flex-1">
+          <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+          <input
+            type="text"
+            placeholder="Search tasks..."
+            className="w-full rounded-md border pl-8 pr-4 py-2"
           />
-        ))}
+        </div>
+        <Button variant="outline">
+          <Filter className="mr-2 h-4 w-4" />
+          Filter
+        </Button>
       </div>
 
-      {filteredTasks.length === 0 && (
-        <div className="flex flex-col items-center justify-center py-12">
-          <CheckCircle className="h-12 w-12 text-muted-foreground" />
-          <h3 className="mt-4 text-lg font-medium">No tasks found</h3>
-          <p className="text-muted-foreground mt-1">
-            Try adjusting your search or filter criteria
-          </p>
-          <Button className="mt-4" onClick={() => setIsModalOpen(true)}>Create New Task</Button>
+      <div className="border rounded-lg">
+        <div className="border-b p-4 font-medium">
+          <div className="grid grid-cols-12 gap-4">
+            <div className="col-span-1"></div>
+            <div className="col-span-5">Task</div>
+            <div className="col-span-2">Project</div>
+            <div className="col-span-2">Due Date</div>
+            <div className="col-span-1">Priority</div>
+            <div className="col-span-1"></div>
+          </div>
         </div>
-      )}
-      
-      <TaskModal
-        open={isModalOpen}
-        onOpenChange={setIsModalOpen}
-        task={selectedTask}
-        onSave={handleSaveTask}
-      />
+        <div className="divide-y">
+          {tasks.map((task) => (
+            <div key={task.id} className="p-4 hover:bg-muted/50">
+              <div className="grid grid-cols-12 gap-4 items-center">
+                <div className="col-span-1">
+                  <Checkbox 
+                    checked={task.completed} 
+                    onCheckedChange={() => toggleTask(task.id)}
+                  />
+                </div>
+                <div className="col-span-5">
+                  <span className={task.completed ? "line-through text-muted-foreground" : ""}>
+                    {task.title}
+                  </span>
+                </div>
+                <div className="col-span-2 text-sm text-muted-foreground">
+                  {task.project}
+                </div>
+                <div className="col-span-2 text-sm">
+                  <div className="flex items-center">
+                    <Calendar className="mr-1 h-3 w-3" />
+                    {task.due}
+                  </div>
+                </div>
+                <div className="col-span-1">
+                  <span className={`text-xs px-2 py-1 rounded-full ${
+                    task.priority === "High" 
+                      ? "bg-red-100 text-red-800" 
+                      : task.priority === "Medium" 
+                        ? "bg-yellow-100 text-yellow-800" 
+                        : "bg-green-100 text-green-800"
+                  }`}>
+                    {task.priority}
+                  </span>
+                </div>
+                <div className="col-span-1 text-right">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" size="icon">
+                        <MoreHorizontal className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem>Edit</DropdownMenuItem>
+                      <DropdownMenuItem>Duplicate</DropdownMenuItem>
+                      <DropdownMenuItem className="text-red-600">Delete</DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

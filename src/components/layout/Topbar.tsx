@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { 
+  Bell, 
   Search, 
   User, 
   ChevronDown,
@@ -18,7 +19,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import NotificationDropdown from "@/components/notifications/NotificationDropdown";
 
 const Topbar = () => {
   return (
@@ -40,7 +40,9 @@ const Topbar = () => {
       </div>
 
       <div className="flex items-center gap-2">
-        <NotificationDropdown />
+        <Button variant="ghost" size="icon">
+          <Bell className="h-5 w-5" />
+        </Button>
         
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
