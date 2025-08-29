@@ -1,8 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Plus, Search, Filter } from "lucide-react";
+import { Search } from "lucide-react";
 import TeamMemberCard from "@/components/team/TeamMemberCard";
+import InviteMemberButton from "@/components/team/InviteMemberButton";
+import TeamFilter from "@/components/team/TeamFilter";
 
 const Team = () => {
   const teamMembers = [
@@ -44,10 +46,7 @@ const Team = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold">Team</h1>
-        <Button>
-          <Plus className="mr-2 h-4 w-4" />
-          Invite Member
-        </Button>
+        <InviteMemberButton />
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4">
@@ -59,10 +58,7 @@ const Team = () => {
             className="w-full rounded-md border pl-8 pr-4 py-2"
           />
         </div>
-        <Button variant="outline">
-          <Filter className="mr-2 h-4 w-4" />
-          Filter
-        </Button>
+        <TeamFilter />
       </div>
 
       <div className="border rounded-lg">

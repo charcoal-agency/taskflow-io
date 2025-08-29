@@ -1,8 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Plus, Search, Filter } from "lucide-react";
+import { Search } from "lucide-react";
 import ProjectCard from "@/components/projects/ProjectCard";
+import CreateProjectButton from "@/components/projects/CreateProjectButton";
+import ProjectFilter from "@/components/projects/ProjectFilter";
 
 const Projects = () => {
   const projects = [
@@ -42,10 +44,7 @@ const Projects = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold">Projects</h1>
-        <Button>
-          <Plus className="mr-2 h-4 w-4" />
-          New Project
-        </Button>
+        <CreateProjectButton />
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4">
@@ -57,10 +56,7 @@ const Projects = () => {
             className="w-full rounded-md border pl-8 pr-4 py-2"
           />
         </div>
-        <Button variant="outline">
-          <Filter className="mr-2 h-4 w-4" />
-          Filter
-        </Button>
+        <ProjectFilter />
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

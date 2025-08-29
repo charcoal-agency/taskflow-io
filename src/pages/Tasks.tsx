@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { 
-  Search, 
-  Filter
+  Search
 } from "lucide-react";
 import TaskList from "@/components/tasks/TaskList";
 import CreateTaskButton from "@/components/tasks/CreateTaskButton";
+import TaskFilter from "@/components/tasks/TaskFilter";
 
 const Tasks = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -43,10 +43,7 @@ const Tasks = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <Button variant="outline">
-          <Filter className="mr-2 h-4 w-4" />
-          Filter
-        </Button>
+        <TaskFilter />
       </div>
 
       <div className="border rounded-lg">

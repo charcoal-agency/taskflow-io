@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { 
   ChevronLeft, 
   ChevronRight, 
-  Plus, 
   Calendar as CalendarIcon 
 } from "lucide-react";
 import {
@@ -14,6 +13,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import CreateEventButton from "@/components/calendar/CreateEventButton";
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -98,10 +98,7 @@ const Calendar = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold">Calendar</h1>
-        <Button>
-          <Plus className="mr-2 h-4 w-4" />
-          New Event
-        </Button>
+        <CreateEventButton />
       </div>
       
       <div className="flex items-center justify-between">
