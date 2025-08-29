@@ -14,7 +14,9 @@ import {
   ChevronDown,
   Search,
   LayoutGrid,
-  FileText
+  FileText,
+  Moon,
+  Sun
 } from "lucide-react";
 import { 
   Collapsible, 
@@ -31,6 +33,17 @@ const Sidebar = () => {
     projects: true,
     folders: true
   });
+
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    if (!isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  };
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -57,7 +70,7 @@ const Sidebar = () => {
     <div className="flex h-full flex-col border-r bg-background">
       <div className="p-4 border-b">
         <div className="flex items-center justify-between">
-          <h1 className="text-xl font-bold">Motion</h1>
+          <h1 className="text-xl font-bold">TaskFlow.io</h1>
           <Button variant="ghost" size="icon">
             <Plus className="h-4 w-4" />
           </Button>
@@ -254,18 +267,37 @@ const Sidebar = () => {
       </div>
 
       <div className="p-4 border-t">
-        <a
-          href="/settings"
-          className={cn(
-            "flex items-center gap-3 rounded-lg px-3 py-2 transition-all",
-            isActive("/settings") 
-              ? "text-primary bg-primary/10" 
-              : "text-muted-foreground hover:text-primary"
-          )}
-        >
-          <SettingsIcon className="h-4 w-4" />
-          Settings
-        </a>
+        <div className="flex items-center justify-between mb-4">
+          <a
+            href="/settings"
+            className={cn(
+              "flex items-center gap-3 rounded-lg px-3 py-2 transition-all",
+              isActive("/settings") 
+                ? "text-primary bg-primary/10" 
+                : "text-muted-foreground hover:text-primary"
+            )}
+          >
+            <SettingsIcon className="h-4 w-4" />
+            Settings
+          </a>
+          
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={toggleDarkMode}
+            aria-label="Toggle dark mode"
+          >
+            {isDarkMode ? (
+              <Sun className="h-5 w-5" />
+            ) : (
+              <Moon className="h-5 w-5" />
+            )}
+          </Button>
+        </div>
+        
+        <div className="text-center text-xs text-muted-foreground">
+          TaskFlow.io v1.0
+        </div>
       </div>
     </div>
   );
