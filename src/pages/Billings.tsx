@@ -7,6 +7,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import InvoiceSummary from "@/components/billings/InvoiceSummary";
 import InvoiceTable from "@/components/billings/InvoiceTable";
 import InvoiceStatusChart from "@/components/billings/InvoiceStatusChart";
+import PaymentReminder from "@/components/billings/PaymentReminder";
+import RevenueChart from "@/components/billings/RevenueChart";
+import ClientPaymentHistory from "@/components/billings/ClientPaymentHistory";
 
 const Billings = () => {
   const [invoices, setInvoices] = useState([
@@ -89,6 +92,8 @@ const Billings = () => {
     .reduce((sum, invoice) => sum + invoice.amount, 0);
   const paidPercentage = totalInvoiced > 0 ? Math.round((totalPaid / totalInvoiced) * 100) : 0;
 
+  const overdueInvoices = invoices.filter(invoice => invoice.status === "overdue").length;
+
   const handleSearch = (term: string) => {
     // In a real app, this would filter the invoices
     console.log("Searching for:", term);
@@ -114,6 +119,11 @@ const Billings = () => {
         </Button>
       </div>
 
+      <PaymentReminder 
+        overdueInvoices={overdueInvoices} 
+        totalOverdueAmount={overdueAmount} 
+      />
+
       <InvoiceSummary 
         totalInvoiced={totalInvoiced}
         totalPaid={totalPaid}
@@ -122,7 +132,10 @@ const Billings = () => {
         paidPercentage={paidPercentage}
       />
 
-      <InvoiceStatusChart />
+      <div className="grid gap-6 lg:grid-cols-2">
+        <InvoiceStatusChart />
+        <RevenueChart />
+      </div>
 
       <Card>
         <CardHeader>
@@ -137,6 +150,8 @@ const Billings = () => {
           />
         </CardContent>
       </Card>
+
+      <ClientPaymentHistory />
     </div>
   );
 };
